@@ -9,14 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/laurenarfaras/mymeanblog.git"
+    "url": "git+https://github.com/justin1dennison/mymeanblog.git"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/laurenarfaras/mymeanblog/issues"
+    "url": "https://github.com/justin1dennison/mymeanblog/issues"
   },
-  "homepage": "https://github.com/laurenarfaras/mymeanblog#readme",
+  "homepage": "https://github.com/justin1dennison/mymeanblog#readme",
   "dependencies": {
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
