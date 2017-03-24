@@ -2,11 +2,19 @@
 var express = require("express");
 var server = express();
 
-// requre body-parser
+// require mongoose
+var mongoose = require('mongoose');
+
+// require body-parser
 var bodyParser = require("body-parser");
 
-// declare the port
+// user and post routers
+var userRouter = require('./routers/user.router');
+var postRouter = require('./routers/post.router');
+
+// declare the port and mongoURI
 var port = process.env.PORT || 8080;
+var mongoURI = process.env.mongoURI || require("./secrets.js").MONGOURI;
 
 // allow the repo to have access to the public directory
 server.use(express.static(__dirname + "/public"));
@@ -24,8 +32,14 @@ server.use(bodyParser.urlencoded({extended: true}));
 // connect to the database
 mongoose.connect(mongoURI);
 
+// send the index.html file to the browser
+server.get('/', function(req, res){
+  res.sendFile('index.html', {root: __dirname + '/public/html'});
+});
+
 // routes
-server.use(todoRouter);
+server.use(userRouter);
+server.use(postRouter);
 
 server.listen(port, function(){
   console.log("Now listening on port ", port);
