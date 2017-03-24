@@ -10,13 +10,13 @@
     function login(){
       return $http.post('/login')
                   .then(function(response){
-                    console.log(response);
                   });
     }
     function signup(user){
       return $http.post('/signup', user)
                   .then(function(response){
-                    console.log(response);
+                    return response;  // should make response availible in the next
+                                      // then statement
                   });
     }
     function getAll(){
