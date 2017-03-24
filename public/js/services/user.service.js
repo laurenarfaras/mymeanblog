@@ -7,10 +7,8 @@
   function UserService($http){
     var base = '/users';
 
-    function login(){
-      return $http.post('/login')
-                  .then(function(response){
-                  });
+    function login(user){
+      return $http.post('/login', user);
     }
     function signup(user){
       return $http.post('/signup', user)
