@@ -12,8 +12,8 @@
                     console.log(response);
                   });
     }
-    function getOne(post){
-      var url = `${base}/${post._id}`;
+    function getOne(id){
+      var url = `${base}/${id}`;
       return $http.get(url)
                   .then(function(response){
                     console.log(response);
