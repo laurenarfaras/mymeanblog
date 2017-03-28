@@ -19,6 +19,5 @@
                   $scope.newUser.password = "";
                 });
     }
-
   }
 }());

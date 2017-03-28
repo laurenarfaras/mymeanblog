@@ -1,20 +1,21 @@
 (function() {
-  angular.module('mymeanblog')
-        .factory('UserService', UserService);
+  angular.module("mymeanblog")
+        .factory("UserService", UserService);
 
-  UserService.$inject = ['$http'];
+  UserService.$inject = ["$http"];
 
   function UserService($http){
-    var base = '/users';
+    var base = "/users";
 
     function login(user){
-      return $http.post('/login', user);
+      return $http.post("/login", user);
     }
     function signup(user){
-      return $http.post('/signup', user)
+      return $http.post("/signup", user)
                   .then(function(response){
                     return response;  // should make response availible in the next
                                       // then statement
+
                   });
     }
     function getAll(){
@@ -51,6 +52,6 @@
       signup: signup,
       update: update,
       delete: deleteUser
-    }
+    };
   }
 }());

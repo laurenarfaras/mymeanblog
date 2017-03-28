@@ -6,16 +6,28 @@
 
   function RouterConfig($routeProvider){
     $routeProvider
-      .when("/",{
+      .when("/", {
         controller: "SignupController",
         templateUrl: "html/views/signup.html"
       })
-      .when("/login",{
+      .when("/login", {
         controller: "LoginController",
         templateUrl: "html/views/login.html"
+      })
+      .when("/dashboard", {
+        controller: "DashboardController",
+        templateUrl: "html/views/dashboard.html"
+      })
+      .when("/create", {
+        controller: "PostController",
+        templateUrl: "html/views/create.html"
+      })
+      .when("/edit/:postId", {
+        controller: "PostController",
+        templateUrl: "html/views/edit.html"
       })
       .otherwise({
         redirectTo: "/"
       });
-  }  
+  }
 }());
