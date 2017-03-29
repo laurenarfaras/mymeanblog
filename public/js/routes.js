@@ -18,6 +18,10 @@
         controller: "DashboardController",
         templateUrl: "html/views/dashboard.html"
       })
+      .when("/create", {
+        controller: "PostController",
+        templateUrl: "html/views/create.html"
+      })
       .otherwise({
         redirectTo: "/"
       });
