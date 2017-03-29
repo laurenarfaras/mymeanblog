@@ -14,8 +14,12 @@
         controller: "LoginController",
         templateUrl: "html/views/login.html"
       })
+      .when("/dashboard", {
+        controller: "DashboardController",
+        templateUrl: "html/views/dashboard.html"
+      })
       .otherwise({
         redirectTo: "/"
       });
-  }  
+  }
 }());
