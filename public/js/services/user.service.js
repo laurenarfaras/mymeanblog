@@ -2,13 +2,18 @@
   angular.module("mymeanblog")
         .factory("UserService", UserService);
 
-  UserService.$inject = ["$http"];
+  UserService.$inject = ["$http", "$window"];
 
-  function UserService($http){
+  function UserService($http, $window){
     var base = "/users";
+    var localStorage = $window.localStorage;
 
     function login(user){
-      return $http.post("/login", user);
+      return $http.post("/login", user)
+                  .then(function(response){
+                    var token = response.data.token;
+                    saveToken(token);
+                  });
     }
     function signup(user){
       return $http.post("/signup", user)
@@ -45,13 +50,25 @@
                     console.log(response);
                   });
     }
+    function currentUser(){}
+    function saveToken(token){
+      localStorage.setItem("mymeanblog-token", token);
+    }
+    function getToken(){}
+    function isLoggedIn(){}
+    function logout(){}
     return {
       getAll: getAll,
       login: login,
       getOne: getOne,
       signup: signup,
       update: update,
-      delete: deleteUser
+      delete: deleteUser,
+      currentUser: currentUser,
+      saveToken: saveToken,
+      getToken: getToken,
+      isLoggedIn: isLoggedIn,
+      logout: logout
     };
   }
 }());
