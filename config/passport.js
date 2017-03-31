@@ -3,7 +3,7 @@ const passport = require("passport"); // module not file
 const LocalStrategy = require("passport-local").Strategy;
 const User = require("../models/user.model.js");
 
-passport.use(new LocalStrategy({ usernameField: "email"}),
+passport.use(new LocalStrategy({ usernameField: "email"},
         function howWeAuth(username, password, done){
           User.findOne({ email: username }, function(err, user){
             if (err) {
@@ -21,4 +21,4 @@ passport.use(new LocalStrategy({ usernameField: "email"}),
             }
             return done(null, user);
           });
-        });
+        }));

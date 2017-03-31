@@ -23,11 +23,13 @@ const userSchema = mongoose.Schema({
 
 userSchema.methods.setPassword = function(password){
   this.salt = crypto.randomBytes(16).toString("hex");
-  this.hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64);
+  this.hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64)
+                    .toString("hex");
 };
 
 userSchema.methods.validPassword = function(password){
-  const hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64);
+  const hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64)
+                    .toString("hex");
   return this.hash === hash;  // if they are equal then true, if not then false
 };
 userSchema.methods.generateJwt = function(){
@@ -37,7 +39,7 @@ userSchema.methods.generateJwt = function(){
     _id: this._id,
     email: this.email,
     name: this.name,
-    exp: parseInt()
+    exp: parseInt(expiration.getTime() / 1000)
   }, signature);
 };
 

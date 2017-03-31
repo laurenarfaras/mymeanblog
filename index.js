@@ -9,6 +9,9 @@ var postRouter = require('./routers/post.router');
 var port = process.env.PORT || 8080;
 var mongoURI = process.env.MONGOURI || require('./secrets').MONGOURI;
 
+// run the passport configuration
+require("./config/passport");
+
 server.use(express.static(__dirname + '/public'));
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({extended: true}));
