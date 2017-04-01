@@ -50,13 +50,46 @@
                     console.log(response);
                   });
     }
-    function currentUser(){}
+    function currentUser(){
+      if (isLoggedIn()){
+        var token = getToken();
+        var payload = token.split('.')[1];
+        payload = $windo.atob(payload);
+        payload = JSON.parse(payload);
+        
+      } else {
+        return null;  // no user
+      }
+    }
     function saveToken(token){
       localStorage.setItem("mymeanblog-token", token);
     }
-    function getToken(){}
-    function isLoggedIn(){}
-    function logout(){}
+    function getToken(){
+      return localStorage.getItem("mymeanblog-token");
+    }
+    function isLoggedIn(){
+      var token = getToken();
+      var payload;
+      if(token){  // token is valid;
+        payload = token.split('.')[1];
+        payload = $window.atob(payload);
+        payload = JSON.parse(payload);  // turns the string into an object
+        var isExpired = payload.exp < Date.now()/1000 ;
+        if(isExpired) {
+          logout();
+          // the token is expired so logout
+          return false;
+        } else {
+          // there is a token and it is not expired so is logged in
+          return true;
+        }
+      } else {    // not a valid token; return false;
+        return false;
+      }
+    }
+    function logout(){
+      localStorage.removeItem("mymeanblog-token");
+    }
     return {
       getAll: getAll,
       login: login,
