@@ -54,9 +54,12 @@
       if (isLoggedIn()){
         var token = getToken();
         var payload = token.split('.')[1];
-        payload = $windo.atob(payload);
+        payload = $window.atob(payload);
         payload = JSON.parse(payload);
-        
+        return {
+          _id: payload._id,
+          email: payload.email
+        }
       } else {
         return null;  // no user
       }
